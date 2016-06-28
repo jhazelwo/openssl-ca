@@ -1,0 +1,10 @@
+#!/bin/sh
+. $(dirname $0)/Env
+docker build $build_rm -t $image_name $(dirname $0)
+
+[ $? -eq 0 -a please_$1 = please_clean ] && {
+    for this in `/usr/bin/docker images |grep '<none>'|awk '{print $3}'`; do
+        /usr/bin/docker rmi $this
+    done
+}
+

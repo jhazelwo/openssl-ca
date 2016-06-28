@@ -1,0 +1,6 @@
+
+image_name="jhazelwo/openssl-ca:latest"
+nodename="--hostname=openssl-ca"
+volumes="-v /tmp:/mnt"
+run_rm="--rm=true"
+build_rm="--force-rm=true"

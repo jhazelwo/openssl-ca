@@ -1,0 +1,4 @@
+#!/bin/sh
+. $(dirname $0)/Env
+docker run $nodename $run_rm $ports $shmsize -ti $volumes $image_name $@
+
