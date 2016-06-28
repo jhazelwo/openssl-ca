@@ -3,6 +3,7 @@
 
 * All of the steps from
 https://jamielinux.com/docs/openssl-certificate-authority/
+(@jamielinux)
 in an automated script, values defined in the included Dockerfile.
 
 
