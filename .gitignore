@@ -1,0 +1,10 @@
+*.pyc
+.idea
+.*.sw?
+/pkg
+coverage
+.DS_Store
+*.exe
+*.rpm
+*.tar
+*.gz
