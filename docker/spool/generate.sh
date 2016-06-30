@@ -3,7 +3,8 @@
 # All of the steps from https://jamielinux.com/docs/openssl-certificate-authority/
 # in an automated no-input-needed script.
 #
-# Once complete all items are tar-ed up in a file in /root/
+# Once complete all items are tar-ed up in a file and placed in /tmp/ (default)
+# of your host.
 #
 # Safe to re-run as needed. All items are put in their own temp dir.
 #
@@ -17,7 +18,7 @@ cd `mktemp -d`
 rootcadir=`pwd`
 
 # OpenSSL will modify and create files on its own, so we must specify a umask
-# sicne we cannot manually install those files with the right modes.
+# since we cannot manually install those files with the right modes.
 umask 0077
 
 install -d -m 0700 -o 0 -g 0 certs crl newcerts private intermediate passwords
@@ -146,17 +147,16 @@ tname=`basename $rootcadir`
 cd /tmp
 tar cfzv /mnt/${tname}.tar.gz $tname
 set +x
-echo ''
-date
-echo ''
-echo 'Saved all work to:'
-ls -lh /mnt/${tname}.tar.gz
-echo '    which should map to /tmp/ of your system.'
-echo ''
-echo 'Files you need to deploy are:'
-echo "    intermediate/certs/ca-chain.cert.pem"
-echo "    intermediate/private/${Certname}.key.pem"
-echo "    intermediate/certs/${Certname}.cert.pem"
-echo ''
+echo "
+
+Saved all work to:
+`ls -lh /mnt/${tname}.tar.gz`
+    which should map to /tmp/ of your system.
+
+Files you need to deploy are:
+    intermediate/certs/ca-chain.cert.pem
+    intermediate/private/${Certname}.key.pem
+    intermediate/certs/${Certname}.cert.pem
+"
 
 rm -rf $rootcadir
