@@ -18,7 +18,7 @@ cd `mktemp -d`
 rootcadir=`pwd`
 
 # OpenSSL will modify and create files on its own, so we must specify a umask
-# sicne we cannot manually install those files with the right modes.
+# since we cannot manually install those files with the right modes.
 umask 0077
 
 install -d -m 0700 -o 0 -g 0 certs crl newcerts private intermediate passwords
